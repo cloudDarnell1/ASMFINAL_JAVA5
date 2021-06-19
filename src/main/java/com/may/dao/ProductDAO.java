@@ -1,19 +1,14 @@
 package com.may.dao;
 
-import java.util.List;
-
+import com.may.entity.Product;
+import com.may.entity.Report;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
-import com.may.entity.Product;
-import com.may.entity.Report;
-
-
-//import com.j5.entity.Report;
-
+import java.util.List;
 
 public interface ProductDAO extends JpaRepository<Product, Integer>{
 
@@ -53,6 +48,4 @@ public interface ProductDAO extends JpaRepository<Product, Integer>{
 			+ " GROUP BY o.category"
 			+ " ORDER BY sum(o.price) DESC")
 	List<Report> getInventoryByCategory();
-	
-
 }

@@ -1,23 +1,16 @@
 package com.may.controller;
 
-import java.util.List;
-
-import com.may.constant.Constant;
-import com.may.utils.PageUtils;
+import com.may.dao.ProductDAO;
+import com.may.entity.Account;
+import com.may.entity.Product;
+import com.may.service.SessionService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
-import com.may.service.SessionService;
-import com.may.dao.ProductDAO;
-import com.may.entity.Account;
-import com.may.entity.Product;
 
 @Controller
 @RequestMapping("/")
@@ -40,13 +33,7 @@ public class HomeController {
 		return new ModelAndView("redirect:/index.php");
 	}
 	@RequestMapping("index.php")
-	public String home(Model model, @RequestParam(defaultValue = "1") Integer page) {
-
-		PageRequest pageRequest = PageRequest.of(page-1, Constant.PRODUCT_PER_PAGE);
-
-		Page<Product> items = dao.findAll(pageRequest); // chạy trang chủ
-		model.addAttribute("items", items.getContent());
-		model.addAttribute("pages", PageUtils.getPages(items.getTotalPages()));
+	public String home() {
 		return "user/index";
 	}
 

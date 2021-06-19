@@ -30,7 +30,7 @@
 	<jsp:include page="_header.jsp" />
 
 	<%
-	Account user = (Account) session.getAttribute("login");
+		Account user = (Account) session.getAttribute("login");
 	%>
 	<script type="text/javascript">
 		let isLogIn =
@@ -44,38 +44,12 @@
 		<h2 class="title">Featured Products</h2>
 		<div class="frame">
 			<div class="range">
-				<input type="range" min="0" max="40">
+				<input type="range" min="0" max="400">
 			</div>
 		</div>
-		<div class="row">
-			<c:forEach var="item" items="${items}">
-
-				<div class="col-4">
-					<a href="products_detal?masp=${item.id}"><img
-						src="${ pageContext.request.contextPath }/images/${ item.image }"></a>
-					<a href="products_detail"><h4>${item.name}</h4></a>
-					<div class="rating">
-						<i class="fa fa-star">${item.id}</i> <i class="fa fa-star"></i> <i
-							class="fa fa-star"></i>${item.createDate} <i class="fa fa-star"></i>
-						<i class="fa fa-star-o"></i>
-					</div>
-					<p>${item.price}</p>
-				</div>
-			</c:forEach>
+		<div class="row products">
+			<jsp:include page="product.jsp"/>
 		</div>
-
-		<div class="pagination" style="text-align: center">
-
-			<c:forEach var="page" items="${pages}">
-				<a class="page-link"
-					href="${pageContext.request.contextPath}/index.php?page=${page}">
-					${page} </a>
-			</c:forEach>
-
-		</div>
-
-
-
 	</div>
 
 	<!-- ------------ offer -------------- -->
@@ -150,6 +124,8 @@
 
 
 	<jsp:include page="_footer.jsp" />
+
+	<script src="${pageContext.request.contextPath}/js/filter.js"></script>
 
 
 </body>
