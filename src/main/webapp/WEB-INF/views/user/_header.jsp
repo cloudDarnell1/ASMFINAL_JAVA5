@@ -57,14 +57,12 @@
 				<!-- <a href="" class="btn">Explore Now &#8594;</a> -->
 				
 				
-				<form action="/product/search" method="post">
 				<div class="search-container">
-        <input  name="keywords" value="${keywords}"placeholder="Search..."  class="search-input">
-        <a href="#" class="search-btn">
-                <i class="fas fa-search"></i>      
-        </a>
-    </div>
-    </form>
+					<input name="keywords" value="${keywords}"placeholder="Search..."  class="search-input">
+					<button class="search-btn">
+						<i class="fas fa-search"></i>
+					</button>
+				</div>
 		</div>
 				<!-- search -->
 	

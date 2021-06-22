@@ -4,6 +4,20 @@ const productContainer = document.querySelector('.products');
 
 const filterBar = document.querySelector('input[type=range]');
 
+const btnSearch = document.querySelector('.search-btn')
+
+const inputSearch = document.querySelector('input[name=keywords]')
+
+btnSearch.addEventListener('click', async function () {
+    await callApiAndInner(baseUrl+"/product/search?keywords="+inputSearch.value)
+})
+
+inputSearch.addEventListener('keypress',  async function (event) {
+    if (event.keyCode === 13) {
+        await callApiAndInner(baseUrl+"/product/search?keywords="+inputSearch.value)
+    }
+})
+
 const data = {
     from: 10,
     to: 10000000
@@ -22,7 +36,12 @@ async function filter() {
         data.from = parseInt(filterBar.value)
     }
 
-    const  result = await fetch(baseUrl + "/products", {
+    await callApiAndInner(baseUrl + "/products")
+
+};
+
+async function callApiAndInner (url) {
+    const  result = await fetch(url, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
@@ -33,6 +52,6 @@ async function filter() {
     const html = await result.text()
 
     productContainer.innerHTML = html
-};
+}
 
 filter();

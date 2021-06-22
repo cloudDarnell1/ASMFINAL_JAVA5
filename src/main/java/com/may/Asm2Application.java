@@ -20,7 +20,7 @@ public class Asm2Application implements WebMvcConfigurer {
 		registry.addInterceptor(new LoginInterceptor())
 			.addPathPatterns("/admin/**")
 			.order(1);
-		
+
 		registry.addInterceptor(new AuthInterceptor())
 			.addPathPatterns("/admin/**")
 			.order(2);

@@ -66,7 +66,6 @@
 			<b class="pull-left">$ 0</b> <b class="pull-right">$700</b>
 		</div>
 		<div class="row products">
-		asdasdasdasdasd
 		</div>
 	</div>
 

@@ -7,6 +7,7 @@ import com.may.entity.*;
 import com.may.service.MailerService;
 import com.may.service.SessionService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -42,6 +43,10 @@ public class PaymentController {
 		// 1.get account logged in
 		Account account = sessionService.get("login");
 
+		if (account == null) {
+			return new ResponseDTO("Phải đăng nhập",true);
+		}
+
 		// 2. create an order(receipt)
 		Order receipt = new Order();
 		receipt.setAccount(account);
@@ -71,12 +76,9 @@ public class PaymentController {
 	
 	@RequestMapping(value = "/CartDetail", method = RequestMethod.GET)
 	public ModelAndView getCartDetailView(ModelAndView model) {
+
 		model.setViewName( "user/CartDetail");
-		Account ac = sessionService.get("login"); 
-		if (ac == null) {
-			model.setViewName("login");
-			return model;
-		}		
 		return model;
+
 	}
 }

@@ -38,10 +38,7 @@ public interface ProductDAO extends JpaRepository<Product, Integer>{
 	@Query("SELECT p FROM Product p WHERE p.price > ?1")
 	List<Product> findByPrice2(double min, Sort sort);
 	
-	@Query("SELECT o FROM Product o WHERE o.name LIKE ?1")
-	Page<Product> findByKeywords(String keywords, Pageable pageable);
-
-	Page<Product> findAllByNameLike(String keywords, Pageable pageable);
+	List<Product> findAllByNameLike(String keywords);
 	
 	@Query(value = "SELECT * FROM Products WHERE name like %?1%", nativeQuery =true )
 	List<Product> findAllByNameLikeNoPaging(String Name);

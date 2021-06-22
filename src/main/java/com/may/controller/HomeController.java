@@ -5,6 +5,7 @@ import com.may.entity.Account;
 import com.may.entity.Product;
 import com.may.service.SessionService;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -51,36 +52,18 @@ public class HomeController {
 	@RequestMapping(value = "products_detal", method = RequestMethod.GET)
 	public ModelAndView productdetail(@RequestParam String masp, ModelAndView model) {
 		model.setViewName("/user/productdetail");
-		Account ac = sessionService.get("login"); //
-		if (ac == null) {
-			model.setViewName("user/login");
-			return model;
-		}
 		Product item = dao.findById(Integer.valueOf(masp)).get();
 		// chạy trang điều hướng
 		model.addObject("item", item);
 		return model;
 
 	}
-	
-	
-	@RequestMapping("/product/search-and-page")
+
+	@RequestMapping("/product/search")
 	public String searchAndPage(Model model, 
-			@RequestParam("keywords") Optional<String> kw,
-			@RequestParam("p") Optional<Integer> p) {
-		String keywords = kw.orElse(session.get("keywords", ""));
-		session.set("keywords", keywords);
-		Pageable pageable = PageRequest.of(p.orElse(0), 5);
-		//Page<Product> page = dao.findByKeywords("%"+keywords+"%", pageable);
-		Page<Product> page = dao.findAllByNameLike(keywords, pageable);
-		model.addAttribute("page", page);
+			@RequestParam(defaultValue = "") String keywords) {
+		List<Product> products = dao.findAllByNameLike("%"+keywords+"%");
+		model.addAttribute("items", products);
 		return "user/product";
 	}
-    // nè code này đúng k search theo tên sản phẩm
-	
-//	@GetMapping("resources/{path}")
-//	public String getResource(@PathVariable("path") String path) {	
-//		return path;
-//	}
-
 }

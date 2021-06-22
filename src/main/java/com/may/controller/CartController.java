@@ -34,6 +34,7 @@ public class CartController {
 	@Autowired OrderDetailDAO dao;
 	@Autowired ProductDAO productDao;
 	@Autowired OrderDAO orderDao;
+
 	@GetMapping
 	public String cart(Model model) {
 		double sum = cart.getAmount();
@@ -41,27 +42,32 @@ public class CartController {
 		model.addAttribute("cart", cart);
 		return "cart/index";
 	}
+
 	@RequestMapping("add/{id}")
 	public String add(Model model, @PathVariable("id") Integer id) {
 		cart.add(id);
 		return "redirect:/cart";
 	}
+
 	@RequestMapping("remove/{id}")
 	public String remove(@PathVariable("id") Integer id) {
 		cart.remove(id);
 		return "redirect:/cart";
 	}
+
 	@RequestMapping("update/{id}")
 	public String update(@PathVariable("id") Integer id, 
-	@RequestParam("qty") Integer qty) {
+						 @RequestParam("qty") Integer qty) {
 		cart.update(id, qty);
 		return "redirect:/cart";
 	}
+
 	@RequestMapping("clear")
 	public String clear() {
 		cart.clear();
 		return "redirect:/cart";
 	}
+
 	@RequestMapping("save")
 	public String save(Model model) {
 		String username = session.get("username");

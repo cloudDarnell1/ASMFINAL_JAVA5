@@ -3,7 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <c:forEach var="item" items="${items}">
     <div class="col-4">
-        <a href="products_detal?masp=${item.id}"><img
+        <a href="${pageContext.request.contextPath}/products_detal?masp=${item.id}"><img
                 src="${ pageContext.request.contextPath }/images/product/${ item.image }"></a>
         <a href="products_detail"><h4>${item.name}</h4></a>
         <div class="rating">

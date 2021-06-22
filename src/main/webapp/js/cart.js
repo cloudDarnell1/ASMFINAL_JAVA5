@@ -240,14 +240,10 @@ window.cart = {
             Array.from(curCart.values())
         )
 
-        postData('http://localhost:8080/payment/check', order)
+        postData(window.location.origin+'/payment/check', order)
             .then(data => {
-                let {msg, error} = data;
-                if (error === false) {
-                    localStorage.clear();
-                    alert(msg)
-                    location.href = '/';
-                } else console.log('lam gi do neu thanh toan fail')
+                let {msg} = data;
+                alert(msg)
             }
         );
     }, cartDetailResult: function (carts) {
