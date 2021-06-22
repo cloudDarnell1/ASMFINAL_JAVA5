@@ -19,6 +19,9 @@
 <link rel="stylesheet" href="<c:url value = '/css/style.css'/>" />
 </head>
 <body>
+
+	
+
 	<div class="container">
 		<div class="navbar">
 			<div class="logo">
@@ -48,11 +51,12 @@
 
 				<div class="col-2">
 					<div class="form-container">
+						<h1 style="font-size: 20px: color: red; margin: 0">${ notify }</h1>
 						<div class="form-btn">
 							<span onclick="login()">Login</span> <span onclick="register()">Register</span>
 							<hr id="Indicator">
 						</div>
-						<form id="LoginForm" action='/login/auth' method='post'>
+						<form action='/login/auth' method='post'>
 							<input type="text" placeholder="Username"  name="userName"> 
 							<input type="password" placeholder="Password"  name="password">
 							<button type="submit" class="btn">Login</button>
@@ -63,7 +67,7 @@
 							<input type="text" placeholder="Username"> <input
 								type="email" placeholder="Email"> <input type="password"
 								placeholder="Password">
-							<button type="submit" class="btn">Register</button>
+							<button class="btn">Register</button>
 						</form>
 
 					</div>

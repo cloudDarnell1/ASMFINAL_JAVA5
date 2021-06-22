@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+	
+	
 <!-- ------------------- brands --------------------- -->
     <div class="brands">
         <div class="small-container">
@@ -85,6 +87,7 @@
     <script src="/js/cart.js"></script>
     <script type="text/javascript">
     window.addEventListener('load',()=>{
+    	debugger
 		cart.loadView(cart.getCart())
     })
     </script>

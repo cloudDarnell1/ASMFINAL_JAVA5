@@ -4,8 +4,15 @@ import com.may.dao.ProductDAO;
 import com.may.entity.Account;
 import com.may.entity.Product;
 import com.may.service.SessionService;
+
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -19,6 +26,10 @@ public class HomeController {
 	ProductDAO dao;
 	@Autowired
 	SessionService sessionService;
+	
+
+	@Autowired
+	SessionService session;
 
 //@RequestMapping("product/all")
 ////	@RequestMapping("/login")
@@ -51,6 +62,21 @@ public class HomeController {
 		return model;
 
 	}
+	
+	
+	@RequestMapping("/product/search-and-page")
+	public String searchAndPage(Model model, 
+			@RequestParam("keywords") Optional<String> kw,
+			@RequestParam("p") Optional<Integer> p) {
+		String keywords = kw.orElse(session.get("keywords", ""));
+		session.set("keywords", keywords);
+		Pageable pageable = PageRequest.of(p.orElse(0), 5);
+		//Page<Product> page = dao.findByKeywords("%"+keywords+"%", pageable);
+		Page<Product> page = dao.findAllByNameLike(keywords, pageable);
+		model.addAttribute("page", page);
+		return "user/product";
+	}
+    // nè code này đúng k search theo tên sản phẩm
 	
 //	@GetMapping("resources/{path}")
 //	public String getResource(@PathVariable("path") String path) {	

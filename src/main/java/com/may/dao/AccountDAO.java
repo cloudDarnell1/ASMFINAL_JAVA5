@@ -6,4 +6,5 @@ import com.may.entity.Account;
 
 public interface AccountDAO extends JpaRepository<Account, String> {
 
+	Account findByUsernameAndPassword(String username, String password);
 }

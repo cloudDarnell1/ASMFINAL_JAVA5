@@ -22,15 +22,16 @@
 
 <script src="./script.js"></script>
 
+
+
+  <link href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" rel="stylesheet">
+   <link href="https://fonts.googleapis.com/css2?family=Lato&display=swap" rel="stylesheet">
 </head>
 <body>
-
-
-
 	<jsp:include page="_header.jsp" />
 
 	<%
-		Account user = (Account) session.getAttribute("login");
+	Account user = (Account) session.getAttribute("login");
 	%>
 	<script type="text/javascript">
 		let isLogIn =
@@ -39,16 +40,33 @@
 	</script>
 	
 	
+	 <div class="categories">
+        <div class="small-container">
+            <div class="row">
+                <div class="col-3">
+                    <img src="images/l1.jpg">
+                </div>
+                <div class="col-3">
+                    <img src="images/l2.jpg">
+                </div>
+                <div class="col-3">
+                    <img src="images/l3.jpg">
+                </div>
 
+            </div>
+        </div>
+	
+	
 	<div class="small-container">
 		<h2 class="title">Featured Products</h2>
 		<div class="frame">
 			<div class="range">
 				<input type="range" min="0" max="400">
 			</div>
+			<b class="pull-left">$ 0</b> <b class="pull-right">$700</b>
 		</div>
 		<div class="row products">
-			<jsp:include page="product.jsp"/>
+		asdasdasdasdasd
 		</div>
 	</div>
 

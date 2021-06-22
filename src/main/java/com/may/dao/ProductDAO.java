@@ -42,7 +42,10 @@ public interface ProductDAO extends JpaRepository<Product, Integer>{
 	Page<Product> findByKeywords(String keywords, Pageable pageable);
 
 	Page<Product> findAllByNameLike(String keywords, Pageable pageable);
-
+	
+	@Query(value = "SELECT * FROM Products WHERE name like %?1%", nativeQuery =true )
+	List<Product> findAllByNameLikeNoPaging(String Name);
+	
 	@Query("SELECT new Report(o.category, sum(o.price), count(o)) "
 			+ " FROM Product o "
 			+ " GROUP BY o.category"

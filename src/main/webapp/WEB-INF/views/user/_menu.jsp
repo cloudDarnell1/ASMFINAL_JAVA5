@@ -12,8 +12,8 @@
 			</div>
 			<nav>
 				<ul id="MenuItems">
-					<li><a href="index.html">Home</a></li>
-					<li><a href="products.html">Products</a></li>
+					<li><a href="/index.php">Home</a></li>
+					<li><a href="/products">Products</a></li>
 					<li><a href="">About</a></li>
 					<li><a href="">Contact</a></li>
 					<li><a href="account.html">Account</a></li>

@@ -2,16 +2,10 @@
 	pageEncoding="UTF-8"%>
 
 <%@taglib uri="http://java.sun.com/jstl/core_rt" prefix="c"%>
-
-
-
 <c:forEach var="item" items="${items }">
 <div class="small-container">
         <h2 class="title">Featured Products</h2>
-        
         <div class="row">
-        
-        // sao mat cai range luon kia
         <div class="col-4">
                 <a href="products_detal.html"><img src="/images/product/${item.image }"></a>
                 <a href="products_detal.html"><h4>${item.name }</h4></a>

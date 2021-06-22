@@ -1,7 +1,5 @@
 package com.may.service.userServicefolder;
 
-import java.util.Optional;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -17,7 +15,9 @@ public class userServiceImpl implements UserService {
 	@Override
 	public Account getUserById(String inputUserName, String inputPassword) {
 		try {
-			return accountDao.findById(inputUserName).get();
+			
+			return accountDao.findByUsernameAndPassword(inputUserName, inputPassword);
+			
 		} catch (Exception e) {
 			return null;
 		}
